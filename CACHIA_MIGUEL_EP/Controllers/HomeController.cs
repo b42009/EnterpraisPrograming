@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace CACHIA_MIGUEL_EP.Controllers
 {
     public class HomeController : Controller
-    {
+   
         public ActionResult Index()
         {
             return View();
