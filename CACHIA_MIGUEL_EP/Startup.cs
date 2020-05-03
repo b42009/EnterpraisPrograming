@@ -47,6 +47,7 @@ namespace CACHIA_MIGUEL_EP
 
                         string userPWD = "P@ssw0rd_1234";
 
+
                         IdentityResult chkUser = userManager.Create(user, userPWD);
 
                         //Add the admin user to the Admin role, if it was successfully created
