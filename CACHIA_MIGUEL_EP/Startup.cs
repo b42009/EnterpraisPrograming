@@ -45,6 +45,7 @@ namespace CACHIA_MIGUEL_EP
                         user.UserName = "admin@yourEmailHost.com";
                         user.Email = "admin@yourEmailHost.com";
 
+
                         string userPWD = "P@ssw0rd_1234";
 
                         IdentityResult chkUser = userManager.Create(user, userPWD);
