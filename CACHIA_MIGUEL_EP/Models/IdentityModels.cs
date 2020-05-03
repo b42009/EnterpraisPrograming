@@ -21,13 +21,25 @@ namespace CACHIA_MIGUEL_EP.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("PropertyConnection", throwIfV1Schema: false)
         {
+          //  Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseAlways<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+        public System.Data.Entity.DbSet<CACHIA_MIGUEL_EP.Models.Category> Category { get; set; }
+
+        public System.Data.Entity.DbSet<CACHIA_MIGUEL_EP.Models.ItemType> ItemTypes { get; set; }
+        public System.Data.Entity.DbSet<CACHIA_MIGUEL_EP.Models.Item> items { get; set; }
+    }
+    public class ApplicationDbContextInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    {
+        protected override void Seed(ApplicationDbContext context)
+        {
+            base.Seed(context);
         }
     }
 }
