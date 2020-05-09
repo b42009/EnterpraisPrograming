@@ -34,6 +34,7 @@ namespace CACHIA_MIGUEL_EP.Models
 
         public System.Data.Entity.DbSet<CACHIA_MIGUEL_EP.Models.ItemType> ItemTypes { get; set; }
         public System.Data.Entity.DbSet<CACHIA_MIGUEL_EP.Models.Item> items { get; set; }
+        public System.Data.Entity.DbSet<CACHIA_MIGUEL_EP.Models.Quality> Qualitys { get; set; }
     }
     public class ApplicationDbContextInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {

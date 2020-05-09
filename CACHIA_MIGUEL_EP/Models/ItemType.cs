@@ -11,11 +11,17 @@ namespace CACHIA_MIGUEL_EP.Models
     {
         [Key]
         public int ItemTypeID { get; set; }
+    
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        [Required]
 
         public String Name { get; set; }
+     
         public String Image { get; set; }
+
+      
+        public string ImageUrl { get; set; }
         public virtual ICollection<Item> Item { get; set; }
     }
 }

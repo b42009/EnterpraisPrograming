@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CACHIA_MIGUEL_EP.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -10,18 +12,45 @@ namespace CACHIA_MIGUEL_EP
 {
     public partial class Startup
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         public void Configuration(IAppBuilder app)
         {
+
             ConfigureAuth(app);
             creatRolesAndDefaultUsers();
+            populateQuality();
+
+        }
+        public void populateQuality() {
+            var qual= db.Qualitys.ToList();
+            if ( qual.Count()!= 4) {
+                if (qual.Count() != 0)
+                {
+                    db.Qualitys.RemoveRange(db.Qualitys);
+;
+                }
+                    
+                List<String> list = new List<String>() { "Excellent", "Good", "Poor","Bad"};
+                for (int i = 0; i < list.Count; i++) {
+                    Quality Quality = new Quality();
+                    Quality.QualityName = list[i];
+
+                    db.Qualitys.Add(Quality);
+                   
+                }
+                db.SaveChanges();
+
+            }
         }
 
         private void creatRolesAndDefaultUsers()
         {
+
             using (ApplicationDbContext context = new ApplicationDbContext()) 
             {
                 using (RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context)))
                 {
+
                     if (!roleManager.RoleExists("Admin"))
                     {
                         IdentityRole role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
@@ -35,6 +64,7 @@ namespace CACHIA_MIGUEL_EP
                         roleManager.Create(role);
                     }
                 }
+
                 using (UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context)))
                 {
                     
